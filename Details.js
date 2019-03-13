@@ -23,13 +23,13 @@ export default class DetailsScreen extends Component {
       <ScrollView style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerText1}>{ this.dog.name }</Text>
-          <Text style={styles.headerText2}>{ this.dog.location }</Text>
+          <Text style={styles.headerText2}>{ this.dog.animal }</Text>
         </View>
         <View style={styles.imageView}>
-          <Image style={{width: '100%', height: '100%'}} source={ this.dog.source } resizeMode="contain"/>
+          <Image style={{width: '100%', height: '100%'}} source={{ uri: this.dog.image }} resizeMode="contain"/>
         </View>
         <View style={styles.descriptionView}>
-          <Text>{ this.dog.description }</Text>
+          <Text>{ this.dog.breed + ", " + this.dog.age + ", " + this.dog.size }</Text>
         </View>
         <View style={styles.footer}>
           <TouchableOpacity style={styles.button} onPress={()=>{}}>

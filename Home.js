@@ -32,20 +32,20 @@ export default class HomeScreen extends Component {
       <View style={styles.container}>
         <CardStack style={styles.content} verticalSwipe={false} renderNoMoreCards={() => <Text style={{ color: 'gray', fontSize: 24 }}>End</Text>} ref={swiper => { this.swiper = swiper }}>
           {this.state.dogs.map((dog, i) => {
-            return <Card onSwipedRight={() => { this.handleSwipe(dog); }} key={dog.id}><DogCard name={dog.name} source={dog.source} location={dog.location} randomColor={randomColor({ luminosity: 'light' })} /></Card>
+            return <Card onSwipedRight={() => { this.handleSwipe(dog); }} key={dog.id}><DogCard name={dog.name} source={{ uri: dog.image }} location={dog.animal} randomColor={randomColor({ luminosity: 'light' })} /></Card>
           })}
         </CardStack>
 
         <View style={styles.footer}>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={[styles.button, styles.red]} onPress={() => { this.swiper.swipeLeft(); }}>
-              <Image source={require('./assets/sad_dog.png')} resizeMode={'contain'} style={{ height: 62, width: 62 }} />
+              <Text style={ styles.thumb }>👎</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.button, styles.orange]} onPress={() => { this.swiper.goBackFromLeft(); }}>
               <Image source={require('./assets/back.png')} resizeMode={'contain'} style={{ height: 32, width: 32, borderRadius: 5 }} />
             </TouchableOpacity>
             <TouchableOpacity style={[styles.button, styles.green]} onPress={() => { this.swiper.swipeRight(); }}>
-              <Image source={require('./assets/happy_dog.png')} resizeMode={'contain'} style={{ height: 62, width: 62 }} />
+              <Text style={ styles.thumb }>👍</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -101,6 +101,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 75,
     borderWidth: 6,
+  },
+  thumb: {
+    fontSize: 36
   },
   orange: {
     borderColor: 'rgb(246,190,66)',
